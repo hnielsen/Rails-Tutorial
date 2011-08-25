@@ -18,8 +18,12 @@ end
 
 gem 'jquery-rails'
 
-gem "rspec-rails", ">= 2.6.1", :group => [:development, :test]
+group :development do
+  gem "rspec-rails", ">= 2.6.1"
+end
 
 group :test do
+  gem "rspec-rails", ">= 2.6.1"
   gem 'webrat'
+  gem 'spork', ">=0.9.0rc9"
 end
