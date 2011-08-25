@@ -26,4 +26,8 @@ group :test do
   gem "rspec-rails", ">= 2.6.1"
   gem 'webrat'
   gem 'spork', ">=0.9.0rc9"
+  gem 'autotest'
+  gem 'autotest-inotify'
+  gem 'autotest-notification'
+  gem 'autotest-rails-pure'
 end

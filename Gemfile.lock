@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    ZenTest (4.6.2)
     actionmailer (3.1.0.rc5)
       actionpack (= 3.1.0.rc5)
       mail (~> 2.3.0)
@@ -31,6 +32,15 @@ GEM
     activesupport (3.1.0.rc5)
       multi_json (~> 1.0)
     arel (2.1.4)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    autotest-inotify (0.0.6)
+      autotest (>= 4.2.4)
+      rb-inotify
+    autotest-notification (2.3.3)
+      autotest-standalone (~> 4.5)
+    autotest-rails-pure (4.1.2)
+    autotest-standalone (4.5.6)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
     coffee-rails (3.1.0.rc.6)
@@ -44,6 +54,7 @@ GEM
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    ffi (1.0.9)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.13)
@@ -82,6 +93,8 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2)
+    rb-inotify (0.8.6)
+      ffi (>= 0.5.0)
     rdoc (3.9.3)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -126,6 +139,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autotest
+  autotest-inotify
+  autotest-notification
+  autotest-rails-pure
   coffee-rails (~> 3.1.0.rc)
   jquery-rails
   rails (= 3.1.0.rc5)
