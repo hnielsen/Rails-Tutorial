@@ -1,18 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc5'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 
+gem 'gravatar_image_tag'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails', "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
 
@@ -31,4 +32,6 @@ group :test do
   gem 'autotest-inotify'
   gem 'autotest-notification'
   gem 'autotest-rails-pure'
+  gem 'factory_girl_rails', ">= 1.0"
+  gem 'turn', :require => false
 end
