@@ -6,3 +6,4 @@ tmp/
 *~
 webrat.log
 *.sw?
+tmp/tags
