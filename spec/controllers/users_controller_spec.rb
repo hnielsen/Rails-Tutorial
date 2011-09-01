@@ -47,6 +47,30 @@ describe UsersController do
       get :new
       response.should have_selector("title", :content => "Sign up")
     end
+
+    # Checking for presence of fields in this way seems vulnerable to implementation details like the name of the 
+    # fields in the generated html from the views. Don't waste time maintaining if this changes and breaks the 
+    # following 'field' tests
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+
+    it "should have a email field" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+
+    it "should have a password field" do
+      get :new
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+
+    it "should have a password confirmation field" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+
   end
 
   describe "POST 'create'" do

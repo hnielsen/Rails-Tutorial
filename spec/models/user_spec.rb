@@ -91,6 +91,7 @@ describe User do
       long = "a" * 41
       User.new(@attr.merge(:password => long, :password_confirmation => long)).should_not be_valid
     end
+
   end
 
 
