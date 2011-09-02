@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  force_ssl :except => :destroy  
 
   def new
     @title = "Sign in"
