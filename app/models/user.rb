@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                        :length => { :within => 6..40 }
 
   def self.authenticate_with_token(id, salt)
-    user.find_by_id(id)
+    user = User.find_by_id(id)
     (user && user.created_at.to_i == salt) ? user : nil
   end
 end

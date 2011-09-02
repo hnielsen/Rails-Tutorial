@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   
     respond_to do |wants|
       if @user.save
+        sign_in @user
         # flash[:notice] = 'User was successfully created.'
         flash[:success] = 'Welcome to the Sample App'
         wants.html { redirect_to @user }
