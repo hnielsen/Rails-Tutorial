@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :only => [ :edit, :update ]
+  before_filter :correct_user, :only => [ :edit, :update ]
 
   def show
     @user = User.find(params[:id])
@@ -26,5 +28,34 @@ class UsersController < ApplicationController
         wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+    @title = "Edit user"
+  end
+
+  def update
+    respond_to do |wants|
+      if @user.update_attributes(params[:user])
+        flash[:success] = 'Profile updated.'
+        wants.html { redirect_to(@user) }
+        wants.xml  { head :ok }
+      else
+        @title = "Edit user"
+        wants.html { render :action => "edit" }
+        wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless current_user?(@user)
   end
 end
