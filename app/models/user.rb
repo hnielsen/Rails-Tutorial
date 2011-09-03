@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   #  attr_accessible is for explicitly telling what accessors may be used. 
   attr_accessible :name, :email, :password, :password_confirmation
 
+  self.per_page = 10
+
   validates :name, :presence => true,
                    :length => { :maximum => 50 }
 

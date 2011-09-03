@@ -6,7 +6,7 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem "will_paginate", "~> 3.0.0"
 gem 'gravatar_image_tag'
 
 # Gems used only for assets and not required
@@ -22,6 +22,7 @@ gem 'jquery-rails'
 group :development do
   gem "rspec-rails", ">= 2.6.1"
   gem 'annotate', :git => "https://github.com/ctran/annotate_models.git"
+  gem 'faker'
 end
 
 group :test do
