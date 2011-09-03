@@ -124,6 +124,13 @@ describe UsersController do
       response.should have_selector("input[name='user[password_confirmation]'][type='password']")
     end
 
+    it "should redirect signed-in users to the home page" do
+      user = Factory :user
+      test_sign_in user
+      get :new
+      response.should redirect_to root_path
+    end
+
   end
 
   describe "POST 'create'" do
@@ -148,6 +155,13 @@ describe UsersController do
       it "should render the new page" do
         post :create, :user => @attr
         response.should render_template('new')
+      end
+
+      it "should redirect signed-in users to the home page" do
+        user = Factory :user
+        test_sign_in user
+        post :create, :user => @attr
+        response.should redirect_to root_path
       end
     end
 
@@ -321,8 +335,8 @@ describe UsersController do
     describe "as an admin user" do
 
       before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
-        test_sign_in admin
+        @admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        test_sign_in @admin
       end
 
       it "should destroy the user" do
@@ -333,6 +347,11 @@ describe UsersController do
 
       it "should redirect to the all users page" do
         delete :destroy, :id => @user
+        response.should redirect_to users_path
+      end
+
+      it "should prevent deleting themselves" do
+        delete :destroy, :id => @admin
         response.should redirect_to users_path
       end
     end
