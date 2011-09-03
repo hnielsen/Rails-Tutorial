@@ -12,7 +12,8 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-  #  attr_accessible is for explicitly telling what accessors may be used. 
+  has_many :microposts, :dependent => :destroy
+
   attr_accessible :name, :email, :password, :password_confirmation
 
   self.per_page = 10
