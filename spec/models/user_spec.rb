@@ -149,5 +149,22 @@ describe User do
         Micropost.find_by_id(p.id).should be_nil
       end
     end
+
+    describe "status feed" do
+
+      it "should have a status feed" do
+        @user.should respond_to :feed
+      end
+
+      it "should include the user's microposts" do
+        @user.feed.include?(@p1).should be_true
+        @user.feed.include?(@p2).should be_true
+      end
+
+      it "should not include a different user's microposts" do
+        p3 = Factory(:micropost, :user => Factory(:user, :email => Factory.next(:email)))
+        @user.feed.include?(p3).should be_false
+      end
+    end
   end
 end

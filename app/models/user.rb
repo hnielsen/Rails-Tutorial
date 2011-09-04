@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
   validates :password, :presence => { :on => :create },
                        :length => { :within => 6..40 }
 
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
   def self.authenticate_with_token(id, salt)
     user = User.find_by_id(id)
     (user && user.created_at.to_i == salt) ? user : nil
