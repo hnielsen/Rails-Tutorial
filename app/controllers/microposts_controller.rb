@@ -2,6 +2,17 @@ class MicropostsController < ApplicationController
   before_filter :authenticate
   before_filter :authorized_user, :only => :destroy
 
+  def index
+    @title = "All microposts"
+    user = User.find(params[:user_id])
+    @microposts = user.microposts.paginate(:page => params[:page])
+  
+    respond_to do |wants|
+      wants.html # index.html.erb
+      wants.xml  { render :xml => @microposts }
+    end
+  end
+
   def create
     @micropost = current_user.microposts.build(params[:micropost])
   

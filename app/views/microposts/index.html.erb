@@ -1,0 +1,9 @@
+<h1>All microposts</h1>
+
+<% unless @microposts.empty? %>
+  <%= will_paginate %>
+  <table class="microposts" summary="User microposts">
+    <%= render @microposts %>
+  </table>
+  <%= will_paginate @microposts %>
+<% end %>

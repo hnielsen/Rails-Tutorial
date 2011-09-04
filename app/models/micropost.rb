@@ -7,4 +7,6 @@ class Micropost < ActiveRecord::Base
                       :length => { :maximum => 140 }
 
   default_scope :order => 'microposts.created_at DESC'
+
+  self.per_page = 10
 end

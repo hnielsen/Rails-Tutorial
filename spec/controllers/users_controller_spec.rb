@@ -95,6 +95,21 @@ describe UsersController do
       response.should have_selector("span.content", :content => p2.content)
     end
 
+    it "should paginate microposts" do
+      p1 = Factory(:micropost, :user => @user, :content => "Foo bar 1")
+      p2 = Factory(:micropost, :user => @user, :content => "Foo bar 2")
+      30.times do
+        Factory(:micropost, :user => @user, :content => "Lorem ipsum dolor")
+      end
+      get :show, :id => @user
+      response.should have_selector "div.pagination"
+      response.should have_selector("span.disabled", :content => "Previous")
+      response.should have_selector("a", :href => user_path(@user) + "?page=2",
+                                    :content => "2")
+      response.should have_selector("a", :href => user_path(@user) + "?page=2",
+                                    :content => "Next")
+    end
+
   end
 
   describe "GET 'new'" do
