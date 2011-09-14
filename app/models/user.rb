@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation
 
-  self.per_page = 10
-
   validates :name, :presence => true,
                    :length => { :maximum => 50 }
 
