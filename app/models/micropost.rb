@@ -18,6 +18,16 @@ class Micropost < ActiveRecord::Base
                       :length => { :maximum => 140 }
 
   default_scope :order => 'microposts.created_at DESC'
+  
+  # Return microposts from the users being followed by the given user
+  scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
   self.per_page = 10
+
+  private
+
+  def self.followed_by(user)
+    following_ids = %(SELECT followed_id FROM relationships WHERE follower_id = :user_id)
+    where("user_id IN (#{following_ids}) OR user_id = :user_id", { :user_id => user } )
+  end
 end

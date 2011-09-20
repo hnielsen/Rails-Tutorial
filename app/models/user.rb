@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
                        :length => { :within => 6..40 }
 
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
 
   def self.authenticate_with_token(id, salt)
